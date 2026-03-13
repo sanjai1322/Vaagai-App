@@ -234,8 +234,8 @@ export default function CourseDetail() {
                 <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400">
                   {index + 1}
                 </div>
-                <div className="flex-1">
-                  <div className="font-bold text-sm">{item.title}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-sm truncate">{item.title}</div>
                   <div className="text-xs text-stone-400">{item.duration}</div>
                 </div>
                 <div className="w-8 h-8 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600">

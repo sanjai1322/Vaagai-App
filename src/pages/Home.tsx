@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Stats - Clean Utility Style */}
       <section className="px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
           {[
             { icon: Users, label: 'மாணவர்கள்', value: '10K+', color: 'text-emerald-500', bg: 'bg-emerald-50' },
             { icon: BookCheck, label: 'பாடங்கள்', value: '50+', color: 'text-blue-500', bg: 'bg-blue-50' },
@@ -167,19 +167,20 @@ export default function Home() {
           </div>
           <Link to="/courses" className="text-emerald-600 text-sm font-bold hover:underline">மேலும் பார்க்க</Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 flex-wrap">
           {featuredCourses.map((course, i) => (
             <motion.div
               key={course.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + (i * 0.1) }}
+              className="flex"
             >
               <Link 
                 to={`/courses/${course.id}`}
-                className="group block bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all"
+                className="group block bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all w-full flex flex-col"
               >
-                <div className="relative aspect-video overflow-hidden">
+                <div className="relative aspect-video overflow-hidden shrink-0">
                   <img 
                     src={course.thumbnail} 
                     alt={course.title} 
@@ -190,12 +191,12 @@ export default function Home() {
                     <span className="bg-emerald-500 text-emerald-950 text-[10px] font-bold px-2 py-1 rounded-lg shadow-lg">சிறப்பு</span>
                   </div>
                 </div>
-                <div className="p-5 space-y-3">
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-stone-900 group-hover:text-emerald-600 transition-colors line-clamp-1">{course.title}</h4>
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <div className="space-y-1 flex-grow">
+                    <h4 className="font-bold text-stone-900 group-hover:text-emerald-600 transition-colors line-clamp-2 min-h-[2.5rem]">{course.title}</h4>
                     <p className="text-xs text-stone-500 line-clamp-1">{course.instructor}</p>
                   </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-stone-50">
+                  <div className="flex items-center justify-between pt-3 border-t border-stone-50 shrink-0">
                     <div className="flex items-center gap-1.5">
                       <div className="flex items-center gap-0.5">
                         <Star className="w-3 h-3 fill-amber-400 text-amber-400" />

@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react
 import { motion } from 'motion/react';
 import { Users, Play } from 'lucide-react';
 import Layout from './components/Layout';
+import AdminLayout from './components/AdminLayout';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 import CourseDetail from './pages/CourseDetail';
 import Viewer from './pages/Viewer';
@@ -45,6 +48,7 @@ const CourseList = () => {
   const courses = [
     { id: '1', title: 'வாகை தமிழ்ச்சங்கம் - நேரலை வகுப்பு 1', instructor: 'தமிழ் அறிஞர்', thumb: 'https://img.youtube.com/vi/d5bMG01N_Gs/maxresdefault.jpg', level: 'அனைவருக்கும்', students: '1.2K' },
     { id: '2', title: 'வாகை தமிழ்ச்சங்கம் - நேரலை வகுப்பு 2', instructor: 'தமிழ் அறிஞர்', thumb: 'https://img.youtube.com/vi/rNM3ZpJYf88/maxresdefault.jpg', level: 'அனைவருக்கும்', students: '850' },
+    { id: '3', title: 'வாகை தமிழ்ச்சங்கம் - நேரலை வகுப்பு 3', instructor: 'தமிழ் அறிஞர்', thumb: 'https://img.youtube.com/vi/zgpmddEK868/maxresdefault.jpg', level: 'அனைவருக்கும்', students: '950' },
     { id: 'silappathikaram', title: 'சிலப்பதிகாரம்', instructor: 'நா. கனகராஜ் M.A., B.Ed., TET.', thumb: 'https://picsum.photos/seed/silambu/400/250', level: 'இடைநிலை', students: '1.5K' },
     { id: 'ara-ilakkiyam', title: 'அற இலக்கியங்கள்', instructor: 'முனைவர் இரா. வேதகனி & குழுவினர்', thumb: 'https://picsum.photos/seed/aram/400/250', level: 'அடிப்படை', students: '920' },
     { id: 'thirukkural', title: 'திருக்குறள்', instructor: 'முனைவர் சு. சத்தியா', thumb: 'https://picsum.photos/seed/kural/400/250', level: 'அனைவருக்கும்', students: '2.1K' },
@@ -66,19 +70,20 @@ const CourseList = () => {
         <p className="text-stone-500 text-sm">உங்கள் ஆர்வத்திற்கு ஏற்ற பாடத்தைத் தேர்ந்தெடுங்கள்</p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {courses.map((course, i) => (
           <motion.div
             key={course.id}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.05 }}
+            className="flex"
           >
             <Link 
               to={`/courses/${course.id}`} 
-              className="group block bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all h-full flex flex-col"
+              className="group block bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all h-full w-full flex flex-col"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-video overflow-hidden shrink-0">
                 <img 
                   src={course.thumb} 
                   alt={course.title} 
@@ -93,14 +98,14 @@ const CourseList = () => {
               </div>
               
               <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  <h3 className="font-bold text-stone-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-tight">
+                <div className="space-y-2 flex-grow">
+                  <h3 className="font-bold text-stone-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-tight min-h-[2.5rem]">
                     {course.title}
                   </h3>
-                  <p className="text-xs text-stone-500">{course.instructor}</p>
+                  <p className="text-xs text-stone-500 line-clamp-1">{course.instructor}</p>
                 </div>
                 
-                <div className="pt-4 border-t border-stone-50 flex items-center justify-between">
+                <div className="pt-4 border-t border-stone-50 flex items-center justify-between shrink-0">
                   <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1 text-stone-400">
                       <Users className="w-3 h-3" />
@@ -151,11 +156,11 @@ const Progress = () => <div className="p-6 space-y-6">
 const Profile = () => <div className="p-6 space-y-8">
   <div className="flex flex-col items-center space-y-3">
     <div className="w-24 h-24 bg-emerald-100 rounded-full border-4 border-white shadow-lg overflow-hidden">
-      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar" />
+      <img src="/person.png" alt="Avatar" className="w-full h-full object-cover" />
     </div>
     <div className="text-center">
-      <h2 className="text-xl font-bold">அன்பு செல்வன்</h2>
-      <p className="text-stone-500 text-sm">anbu@example.com</p>
+      <h2 className="text-xl font-bold">மா. மனோஜ்குமார்</h2>
+      <p className="text-stone-500 text-sm">manoj@example.com</p>
     </div>
   </div>
   
@@ -176,12 +181,20 @@ const Profile = () => <div className="p-6 space-y-8">
 
 function AppContent() {
   const location = useLocation();
-  const hideLayout = location.pathname === '/auth' || location.pathname.startsWith('/viewer');
+  const isAdminLogin = location.pathname === '/admin/login';
+  const isAdminArea = location.pathname.startsWith('/admin') && !isAdminLogin;
+  const hideLayout = location.pathname === '/auth' || location.pathname.startsWith('/viewer') || isAdminLogin || isAdminArea;
 
   const content = (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      {/* Admin routes inside their own layout manually below if needed, or matched here and wrapped by logic */}
+      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/admin/*" element={
+        <div className="p-6"><h1 className="text-2xl font-bold">விரைவில்... (Coming Soon)</h1></div>
+      } />
       <Route path="/about" element={<About />} />
       <Route path="/accreditation" element={<Accreditation />} />
       <Route path="/contact" element={<Contact />} />
@@ -194,6 +207,8 @@ function AppContent() {
     </Routes>
   );
 
+  if (isAdminLogin) return <AdminLogin />;
+  if (isAdminArea) return <AdminLayout>{content}</AdminLayout>;
   if (hideLayout) return content;
 
   return <Layout>{content}</Layout>;

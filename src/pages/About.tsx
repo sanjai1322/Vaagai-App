@@ -55,10 +55,9 @@ export default function About() {
               <div className="w-full max-w-sm bg-white border border-stone-100 rounded-2xl p-8 flex flex-col items-center space-y-4 shadow-sm">
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg bg-stone-50">
                   <img 
-                    src="https://instasize.com/p/bffeb194a6dfa0409789812e06df5ec4239faab8fb7ec67ac796e91db774f55f" 
+                    src="/manoj.jpg" 
                     alt="மா. மனோஜ்குமார்" 
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
                 

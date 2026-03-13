@@ -18,7 +18,7 @@ export default function Auth() {
       <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full space-y-8">
         <div className="text-center space-y-2">
           <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center mx-auto shadow-xl shadow-emerald-100 border-4 border-emerald-50 overflow-hidden">
-            <div className="w-full h-full bg-emerald-600 flex items-center justify-center text-white font-bold text-5xl">வ</div>
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
           </div>
           <h2 className="text-2xl font-bold text-stone-900">
             வாகை தமிழ்ச்சங்கம்

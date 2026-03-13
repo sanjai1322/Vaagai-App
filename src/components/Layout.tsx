@@ -22,10 +22,10 @@ export default function Layout({ children }: LayoutProps) {
       {/* Top Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-200 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border-2 border-emerald-100 overflow-hidden">
-            <div className="w-full h-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xl">வ</div>
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border-2 border-stone-100 overflow-hidden">
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
           </div>
-          <h1 className="text-xl font-bold text-emerald-700 tracking-tight">வாகை தமிழ்ச்சங்கம்</h1>
+          <h1 className="text-lg md:text-xl font-bold text-emerald-700 tracking-tight truncate">வாகை தமிழ்ச்சங்கம்</h1>
         </div>
         <div className="flex gap-3">
            <Link to="/about" title="எங்களைப் பற்றி">

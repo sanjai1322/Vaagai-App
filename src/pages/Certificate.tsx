@@ -25,7 +25,7 @@ export default function Certificate() {
 
         <div className="flex justify-center mb-2">
           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-emerald-100 overflow-hidden">
-            <div className="w-full h-full bg-emerald-600 flex items-center justify-center text-white font-bold text-lg">வ</div>
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default function Certificate() {
 
         <div className="space-y-1">
           <div className="text-[8px] text-stone-400 uppercase">இது வழங்கப்படுகிறது</div>
-          <div className="text-2xl font-bold text-stone-900 border-b-2 border-stone-100 pb-1 px-8">அன்பு செல்வன்</div>
+          <div className="text-2xl font-bold text-stone-900 border-b-2 border-stone-100 pb-1 px-8">சஞ்சய்</div>
         </div>
 
         <p className="text-[10px] text-stone-600 max-w-[240px]">
